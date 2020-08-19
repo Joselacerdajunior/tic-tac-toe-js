@@ -19,6 +19,16 @@ const verif = () => {
         console.log("Temos um vencedor!!");
         alert("Temos um vencedor!! Pressione OK para reiniciar a partida.");
         document.location.reload();
+    }else 
+    if ((jogadas[0] != '') && (jogadas[1] != '') && (jogadas[2] != '') && 
+        (jogadas[3] != '') && (jogadas[4] != '') && (jogadas[5] != '') && 
+        (jogadas[6] != '') && (jogadas[7] != '') && (jogadas[8] != '')) {
+
+        system = '0';
+        console.log(system);
+        console.log("Velha!!");
+        alert("Deu velha!! Ninguem ganhou. Pressione OK para reiniciar a partida.");
+        document.location.reload();
     }
 }
     
