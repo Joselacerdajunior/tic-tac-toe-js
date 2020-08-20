@@ -1,7 +1,9 @@
 var jogadas = ['', '', '', '', '', '', '', '', ''];
+var cont = '1';
 var cont_jogada = '1';
 var url_image = ['url(/images/x-orange.png)', 'url(/images/o-blue.png)']
 var system = '1';
+var posicao = 0;
     
 const verif = () => {
     console.log(jogadas);
@@ -48,146 +50,105 @@ const print_in = () => {
     box1.addEventListener('click', () => {        
 
         if (system == '1') {
-            if( jogadas[0] == '' ) {            
-                box1.style.backgroundImage =  url_image[cont_jogada];
-                jogadas[0] = cont_jogada;
-                verif();
-                if( cont_jogada == '1') {
-                    cont_jogada = '0';
-                } else {
-                    cont_jogada = '1';
-                }
-            }
+            posicao = 0;
+            analizar();            
         }
     });
 
     box2.addEventListener('click', () => {        
         
         if (system == '1') {
-            if( jogadas[1] == '' ) {
-                box2.style.backgroundImage =  url_image[cont_jogada];
-                jogadas[1] = cont_jogada;
-                verif();
-                if( cont_jogada == '1') {
-                    cont_jogada = '0';
-                } else {
-                    cont_jogada = '1';
-                }
-            }
+            posicao = 1;
+            analizar();  
         }
     });
 
     box3.addEventListener('click', () => {        
        
         if (system == '1') { 
-            if( jogadas[2] == '' ) {
-                box3.style.backgroundImage =  url_image[cont_jogada];
-                jogadas[2] = cont_jogada;
-                verif();
-                if( cont_jogada == '1') {
-                    cont_jogada = '0';
-                } else {
-                    cont_jogada = '1';
-                }
-            }
+            posicao = 2;
+            analizar();  
         }
     });
 
     box4.addEventListener('click', () => {        
      
-        if (system == '1') {   
-            if( jogadas[3] == '' ) {
-                box4.style.backgroundImage =  url_image[cont_jogada];
-                jogadas[3] = cont_jogada;
-                verif();
-                if( cont_jogada == '1') {
-                    cont_jogada = '0';
-                } else {
-                    cont_jogada = '1';
-                }
-            }
+        if (system == '1') {  
+            posicao = 3;
+            analizar();  
         }
     });
 
     box5.addEventListener('click', () => {        
       
-        if (system == '1') {  
-            if( jogadas[4] == '' ) {
-                box5.style.backgroundImage =  url_image[cont_jogada];
-                jogadas[4] = cont_jogada;
-                verif();
-                if( cont_jogada == '1') {
-                    cont_jogada = '0';
-                } else {
-                    cont_jogada = '1';
-                }
-            }
+        if (system == '1') { 
+            posicao = 4;
+            analizar();  
         }
     });
 
     box6.addEventListener('click', () => {        
         
         if (system == '1') {
-            if( jogadas[5] == '' ) {
-                box6.style.backgroundImage =  url_image[cont_jogada];
-                jogadas[5] = cont_jogada;
-                verif();
-                if( cont_jogada == '1') {
-                    cont_jogada = '0';
-                } else {
-                    cont_jogada = '1';
-                }
-            }
+            posicao = 5;
+            analizar();  
         }
     });
 
     box7.addEventListener('click', () => {        
       
         if (system == '1') {  
-            if( jogadas[6] == '' ) {
-                box7.style.backgroundImage =  url_image[cont_jogada];
-                jogadas[6] = cont_jogada;
-                verif();
-                if( cont_jogada == '1') {
-                    cont_jogada = '0';
-                } else {
-                    cont_jogada = '1';
-                }
-            }
+            posicao = 6;
+            analizar();  
         }
     });
 
     box8.addEventListener('click', () => {        
       
-        if (system == '1') {  
-            if( jogadas[7] == '' ) {
-                box8.style.backgroundImage =  url_image[cont_jogada];
-                jogadas[7] = cont_jogada;
-                verif();
-                if( cont_jogada == '1') {
-                    cont_jogada = '0';
-                } else {
-                    cont_jogada = '1';
-                }
-            }
+        if (system == '1') {
+            posicao = 7;
+            analizar();  
         }
     });
 
     box9.addEventListener('click', () => {        
       
-        if (system == '1') {  
-            if( jogadas[8] == '' ) {
-                box9.style.backgroundImage =  url_image[cont_jogada];
-                jogadas[8] = cont_jogada;
-                verif();
-                if( cont_jogada == '1') {
-                    cont_jogada = '0';
-                } else {
-                    cont_jogada = '1';
-                }
-            }
+        if (system == '1') { 
+            posicao = 8;
+            analizar();  
         }
     });
 };
 print_in();
 
+const inverte_jogador = () => {
+    if( cont == '1') {
+        cont = '0';
+    } else {
+        cont = '1';
+    }
+}
+
+const set_box = () => {
+    switch (posicao) {
+        case 0: box1.style.backgroundImage =  url_image[cont_jogada]; break;
+        case 1: box2.style.backgroundImage =  url_image[cont_jogada]; break;
+        case 2: box3.style.backgroundImage =  url_image[cont_jogada]; break;
+        case 3: box4.style.backgroundImage =  url_image[cont_jogada]; break;
+        case 4: box5.style.backgroundImage =  url_image[cont_jogada]; break;
+        case 5: box6.style.backgroundImage =  url_image[cont_jogada]; break;
+        case 6: box7.style.backgroundImage =  url_image[cont_jogada]; break;
+        case 7: box8.style.backgroundImage =  url_image[cont_jogada]; break;
+        case 8: box9.style.backgroundImage =  url_image[cont_jogada]; break;
+    }
+}
+
+const analizar = () => {
+    if( jogadas[posicao] == '' ) {  
+        cont_jogada = cont;          
+        set_box();
+        jogadas[posicao] = cont_jogada;
+        inverte_jogador();
+        verif();
+    }
+}
