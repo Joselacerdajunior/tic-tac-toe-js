@@ -4,6 +4,16 @@ var cont_jogada = '1';
 var url_image = ['url(/images/x-orange.png)', 'url(/images/o-blue.png)']
 var system = '1';
 var posicao = 0;
+
+var box1 = document.getElementById("box1");
+var box2 = document.getElementById("box2");
+var box3 = document.getElementById("box3");
+var box4 = document.getElementById("box4");
+var box5 = document.getElementById("box5");
+var box6 = document.getElementById("box6");
+var box7 = document.getElementById("box7");
+var box8 = document.getElementById("box8");
+var box9 = document.getElementById("box9");
     
 const verif = () => {
     console.log(jogadas);
@@ -19,8 +29,10 @@ const verif = () => {
         system = '0';
         console.log(system);
         console.log("Temos um vencedor!!");
-        alert("Temos um vencedor!! Pressione OK para reiniciar a partida.");
-        document.location.reload();
+        setTimeout(() => {            
+            alert("Temos um vencedor!! Pressione OK para reiniciar a partida.");
+            restart_var_game();
+        }, 200);
     }else 
     if ((jogadas[0] != '') && (jogadas[1] != '') && (jogadas[2] != '') && 
         (jogadas[3] != '') && (jogadas[4] != '') && (jogadas[5] != '') && 
@@ -28,25 +40,15 @@ const verif = () => {
 
         system = '0';
         console.log(system);
-        console.log("Velha!!");
-        alert("Deu velha!! Ninguem ganhou. Pressione OK para reiniciar a partida.");
-        document.location.reload();
+        console.log("Velha!!");        
+        setTimeout(() => {            
+            alert("Deu velha!! Ninguem ganhou. Pressione OK para reiniciar a partida.");
+            restart_var_game();
+        }, 200);
     }
 }
     
 const print_in = () => {    
-
-    var box1 = document.getElementById("box1");
-    var box2 = document.getElementById("box2");
-    var box3 = document.getElementById("box3");
-    var box4 = document.getElementById("box4");
-    var box5 = document.getElementById("box5");
-    var box6 = document.getElementById("box6");
-    var box7 = document.getElementById("box7");
-    var box8 = document.getElementById("box8");
-    var box9 = document.getElementById("box9");
-
-
     box1.addEventListener('click', () => {        
 
         if (system == '1') {
@@ -119,7 +121,6 @@ const print_in = () => {
         }
     });
 };
-print_in();
 
 const inverte_jogador = () => {
     if( cont == '1') {
@@ -143,12 +144,37 @@ const set_box = () => {
     }
 }
 
+const restart_var_game = () => {
+    jogadas = ['', '', '', '', '', '', '', '', ''];
+    cont = '1';
+    cont_jogada = '1';
+    system = '1';
+    posicao = 0;
+    
+    limpar_tabuleiro();
+}
+
+const limpar_tabuleiro = () => {
+    box1.style.backgroundImage =  null;
+    box2.style.backgroundImage =  null;
+    box3.style.backgroundImage =  null;
+    box4.style.backgroundImage =  null;
+    box5.style.backgroundImage =  null;
+    box6.style.backgroundImage =  null;
+    box7.style.backgroundImage =  null;
+    box8.style.backgroundImage =  null;
+    box9.style.backgroundImage =  null;    
+}
+
 const analizar = () => {
     if( jogadas[posicao] == '' ) {  
         cont_jogada = cont;          
         set_box();
+        
         jogadas[posicao] = cont_jogada;
         inverte_jogador();
         verif();
     }
 }
+
+print_in();
