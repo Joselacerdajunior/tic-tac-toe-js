@@ -4,6 +4,8 @@ var cont_jogada = '1';
 var url_image = ['url(/images/x-orange.png)', 'url(/images/o-blue.png)']
 var system = '1';
 var posicao = 0;
+var player1 = 0;
+var player2 = 0;
 
 var box1 = document.getElementById("box1");
 var box2 = document.getElementById("box2");
@@ -14,6 +16,9 @@ var box6 = document.getElementById("box6");
 var box7 = document.getElementById("box7");
 var box8 = document.getElementById("box8");
 var box9 = document.getElementById("box9");
+var element_player1 = document.getElementById("text-player1");
+var element_player2 = document.getElementById("text-player2");
+
     
 const verif = () => {
     console.log(jogadas);
@@ -29,6 +34,7 @@ const verif = () => {
         system = '0';
         console.log(system);
         console.log("Temos um vencedor!!");
+        somar_vitoria();
         setTimeout(() => {            
             alert("Temos um vencedor!! Pressione OK para reiniciar a partida.");
             restart_var_game();
@@ -40,7 +46,7 @@ const verif = () => {
 
         system = '0';
         console.log(system);
-        console.log("Velha!!");        
+        console.log("Velha!!");  
         setTimeout(() => {            
             alert("Deu velha!! Ninguem ganhou. Pressione OK para reiniciar a partida.");
             restart_var_game();
@@ -175,6 +181,21 @@ const analizar = () => {
         inverte_jogador();
         verif();
     }
+}
+
+const somar_vitoria = () => {
+    if (cont_jogada == 1) {
+        player1++;
+    } else {
+        player2++;
+    }
+    alterar_valor_h2();
+    console.log(player1 + " " + player2);
+}
+
+const alterar_valor_h2 = () => {
+    element_player1.innerHTML = player1;
+    element_player2.innerHTML = player2;
 }
 
 print_in();
