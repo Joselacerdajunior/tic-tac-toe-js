@@ -1,7 +1,7 @@
 var jogadas = ['', '', '', '', '', '', '', '', ''];
 var cont = '1';
 var cont_jogada = '1';
-var url_image = ['url(/images/x-orange.png)', 'url(/images/o-blue.png)']
+var url_image = ['url(./images/x-orange.png)', 'url(./images/o-blue.png)']
 var system = '1';
 var posicao = 0;
 var player1 = 0;
