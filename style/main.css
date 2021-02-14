@@ -1,5 +1,5 @@
 :root {
-    --proporcao-tabuleiro: 70vh;
+    --proportion-board: 70vh;
 
     font-size: 80%;
 }
@@ -28,8 +28,8 @@ html {
 }
 
 .container-game {
-    width: var(--proporcao-tabuleiro);
-    height: var(--proporcao-tabuleiro);
+    width: var(--proportion-board);
+    height: var(--proportion-board);
     background: #1f1f1f;
     display: grid;
     justify-content: center;
