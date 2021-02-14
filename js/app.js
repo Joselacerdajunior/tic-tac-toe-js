@@ -1,9 +1,9 @@
-var jogadas = ['', '', '', '', '', '', '', '', ''];
-var cont = '1';
-var cont_jogada = '1';
+var plays = ['', '', '', '', '', '', '', '', ''];
+var count = '1';
+var countPlays = '1';
 var url_image = ['url(./images/x-orange.png)', 'url(./images/o-blue.png)']
 var system = '1';
-var posicao = 0;
+var position = 0;
 var player1 = 0;
 var player2 = 0;
 
@@ -21,146 +21,146 @@ var element_player2 = document.getElementById("text-player2");
 
     
 const verif = () => {
-    console.log(jogadas);
-    if ((jogadas[0] == cont_jogada && jogadas[1] == cont_jogada && jogadas[2] == cont_jogada) || 
-        (jogadas[3] == cont_jogada && jogadas[4] == cont_jogada && jogadas[5] == cont_jogada) || 
-        (jogadas[6] == cont_jogada && jogadas[7] == cont_jogada && jogadas[8] == cont_jogada) || 
-        (jogadas[0] == cont_jogada && jogadas[3] == cont_jogada && jogadas[6] == cont_jogada) || 
-        (jogadas[1] == cont_jogada && jogadas[4] == cont_jogada && jogadas[7] == cont_jogada) || 
-        (jogadas[2] == cont_jogada && jogadas[5] == cont_jogada && jogadas[8] == cont_jogada) || 
-        (jogadas[0] == cont_jogada && jogadas[4] == cont_jogada && jogadas[8] == cont_jogada) || 
-        (jogadas[2] == cont_jogada && jogadas[4] == cont_jogada && jogadas[6] == cont_jogada)) {
+    console.log(plays);
+    if ((plays[0] == countPlays && plays[1] == countPlays && plays[2] == countPlays) || 
+        (plays[3] == countPlays && plays[4] == countPlays && plays[5] == countPlays) || 
+        (plays[6] == countPlays && plays[7] == countPlays && plays[8] == countPlays) || 
+        (plays[0] == countPlays && plays[3] == countPlays && plays[6] == countPlays) || 
+        (plays[1] == countPlays && plays[4] == countPlays && plays[7] == countPlays) || 
+        (plays[2] == countPlays && plays[5] == countPlays && plays[8] == countPlays) || 
+        (plays[0] == countPlays && plays[4] == countPlays && plays[8] == countPlays) || 
+        (plays[2] == countPlays && plays[4] == countPlays && plays[6] == countPlays)) {
             
         system = '0';
         console.log(system);
         console.log("Temos um vencedor!!");
-        somar_vitoria();
+        plusVictory();
         setTimeout(() => {            
             alert("Temos um vencedor!! Pressione OK para reiniciar a partida.");
-            restart_var_game();
+            restartVarGame();
         }, 200);
     }else 
-    if ((jogadas[0] != '') && (jogadas[1] != '') && (jogadas[2] != '') && 
-        (jogadas[3] != '') && (jogadas[4] != '') && (jogadas[5] != '') && 
-        (jogadas[6] != '') && (jogadas[7] != '') && (jogadas[8] != '')) {
+    if ((plays[0] != '') && (plays[1] != '') && (plays[2] != '') && 
+        (plays[3] != '') && (plays[4] != '') && (plays[5] != '') && 
+        (plays[6] != '') && (plays[7] != '') && (plays[8] != '')) {
 
         system = '0';
         console.log(system);
         console.log("Velha!!");  
         setTimeout(() => {            
             alert("Deu velha!! Ninguem ganhou. Pressione OK para reiniciar a partida.");
-            restart_var_game();
+            restartVarGame();
         }, 200);
     }
 }
     
-const print_in = () => {    
+const printInBoard = () => {    
     box1.addEventListener('click', () => {        
 
         if (system == '1') {
-            posicao = 0;
-            analizar();            
+            position = 0;
+            analyze();            
         }
     });
 
     box2.addEventListener('click', () => {        
         
         if (system == '1') {
-            posicao = 1;
-            analizar();  
+            position = 1;
+            analyze();  
         }
     });
 
     box3.addEventListener('click', () => {        
        
         if (system == '1') { 
-            posicao = 2;
-            analizar();  
+            position = 2;
+            analyze();  
         }
     });
 
     box4.addEventListener('click', () => {        
      
         if (system == '1') {  
-            posicao = 3;
-            analizar();  
+            position = 3;
+            analyze();  
         }
     });
 
     box5.addEventListener('click', () => {        
       
         if (system == '1') { 
-            posicao = 4;
-            analizar();  
+            position = 4;
+            analyze();  
         }
     });
 
     box6.addEventListener('click', () => {        
         
         if (system == '1') {
-            posicao = 5;
-            analizar();  
+            position = 5;
+            analyze();  
         }
     });
 
     box7.addEventListener('click', () => {        
       
         if (system == '1') {  
-            posicao = 6;
-            analizar();  
+            position = 6;
+            analyze();  
         }
     });
 
     box8.addEventListener('click', () => {        
       
         if (system == '1') {
-            posicao = 7;
-            analizar();  
+            position = 7;
+            analyze();  
         }
     });
 
     box9.addEventListener('click', () => {        
       
         if (system == '1') { 
-            posicao = 8;
-            analizar();  
+            position = 8;
+            analyze();  
         }
     });
 };
 
-const inverte_jogador = () => {
-    if( cont == '1') {
-        cont = '0';
+const reversePlayer = () => {
+    if( count == '1') {
+        count = '0';
     } else {
-        cont = '1';
+        count = '1';
     }
 }
 
 const set_box = () => {
-    switch (posicao) {
-        case 0: box1.style.backgroundImage =  url_image[cont_jogada]; break;
-        case 1: box2.style.backgroundImage =  url_image[cont_jogada]; break;
-        case 2: box3.style.backgroundImage =  url_image[cont_jogada]; break;
-        case 3: box4.style.backgroundImage =  url_image[cont_jogada]; break;
-        case 4: box5.style.backgroundImage =  url_image[cont_jogada]; break;
-        case 5: box6.style.backgroundImage =  url_image[cont_jogada]; break;
-        case 6: box7.style.backgroundImage =  url_image[cont_jogada]; break;
-        case 7: box8.style.backgroundImage =  url_image[cont_jogada]; break;
-        case 8: box9.style.backgroundImage =  url_image[cont_jogada]; break;
+    switch (position) {
+        case 0: box1.style.backgroundImage =  url_image[countPlays]; break;
+        case 1: box2.style.backgroundImage =  url_image[countPlays]; break;
+        case 2: box3.style.backgroundImage =  url_image[countPlays]; break;
+        case 3: box4.style.backgroundImage =  url_image[countPlays]; break;
+        case 4: box5.style.backgroundImage =  url_image[countPlays]; break;
+        case 5: box6.style.backgroundImage =  url_image[countPlays]; break;
+        case 6: box7.style.backgroundImage =  url_image[countPlays]; break;
+        case 7: box8.style.backgroundImage =  url_image[countPlays]; break;
+        case 8: box9.style.backgroundImage =  url_image[countPlays]; break;
     }
 }
 
-const restart_var_game = () => {
-    jogadas = ['', '', '', '', '', '', '', '', ''];
-    cont = '1';
-    cont_jogada = '1';
+const restartVarGame = () => {
+    plays = ['', '', '', '', '', '', '', '', ''];
+    count = '1';
+    countPlays = '1';
     system = '1';
-    posicao = 0;
+    position = 0;
     
-    limpar_tabuleiro();
+    cleanBoard();
 }
 
-const limpar_tabuleiro = () => {
+const cleanBoard = () => {
     box1.style.backgroundImage =  null;
     box2.style.backgroundImage =  null;
     box3.style.backgroundImage =  null;
@@ -172,30 +172,30 @@ const limpar_tabuleiro = () => {
     box9.style.backgroundImage =  null;    
 }
 
-const analizar = () => {
-    if( jogadas[posicao] == '' ) {  
-        cont_jogada = cont;          
+const analyze = () => {
+    if( plays[position] == '' ) {  
+        countPlays = count;          
         set_box();
         
-        jogadas[posicao] = cont_jogada;
-        inverte_jogador();
+        plays[position] = countPlays;
+        reversePlayer();
         verif();
     }
 }
 
-const somar_vitoria = () => {
-    if (cont_jogada == 1) {
+const plusVictory = () => {
+    if (countPlays == 1) {
         player1++;
     } else {
         player2++;
     }
-    alterar_valor_h2();
+    changeH2Value();
     console.log(player1 + " " + player2);
 }
 
-const alterar_valor_h2 = () => {
+const changeH2Value = () => {
     element_player1.innerHTML = player1;
     element_player2.innerHTML = player2;
 }
 
-print_in();
+printInBoard();
